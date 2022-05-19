@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
-
+import 'auth.dart';
 import '../module/extension.dart';
 import '../widgets/main_widgets.dart';
 
 class Login extends StatefulWidget {
-  static const String id = 'login';
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -91,6 +91,7 @@ class _LoginState extends State<Login> {
   }
 
   Future<User?> signInWithEmailPassword(String email, String password) async {
+    await Firebase.initializeApp();
     User? user;
 
     try {
