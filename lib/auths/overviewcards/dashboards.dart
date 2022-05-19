@@ -18,6 +18,7 @@ class OverviewCards extends StatefulWidget {
 class _OverviewCardsState extends State<OverviewCards> {
   String? dataLength;
   String? bursary;
+  String? incidents;
   @override
   Widget build(BuildContext context) {
     FirebaseServices _services = FirebaseServices();
@@ -50,24 +51,24 @@ class _OverviewCardsState extends State<OverviewCards> {
                     ),
                     Row(
                       children: [
-                        StreamBuilder<List<ObModel>>(
-                            stream: locator
-                                .get<CloudRepository>()
-                                .getOccurenceList(),
+                        StreamBuilder(
+                            stream: _services.incidents
+                                .snapshots()
+                                .map((event) {
+                              incidents = event.docs.length.toString();
+                            }),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const Center(
                                     child: CircularProgressIndicator());
                               }
-                              final _reportList = snapshot.data ?? [];
-                              print(_reportList.length.toString());
                               return InfoCard(
-                                bezierCOlor: Colors.blue,
-                                title: 'Total Incidents',
-                                value: _reportList.length.toString(),
+                                title: 'Incidents Reported',
+                                value: incidents,
+                                bezierCOlor: Colors.green,
                                 onTap: () {},
-                                topColor: Colors.blue,
+                                topColor: Colors.greenAccent,
                               );
                             }),
                         SizedBox(
@@ -88,7 +89,7 @@ class _OverviewCardsState extends State<OverviewCards> {
                               }
                               return InfoCard(
                                 title: 'Supervisors Registered',
-                                value: bursary,
+                                value: "1",
                                 bezierCOlor: Colors.green,
                                 onTap: () {},
                                 topColor: Colors.greenAccent,
@@ -112,7 +113,7 @@ class _OverviewCardsState extends State<OverviewCards> {
                               }
                               return InfoCard(
                                 title: 'Operations Managers Registered',
-                                value: dataLength,
+                                value: "1",
                                 bezierCOlor: Colors.orange,
                                 onTap: () {},
                                 topColor: Colors.deepOrangeAccent,
@@ -133,143 +134,143 @@ class _OverviewCardsState extends State<OverviewCards> {
             ),
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 15,
-        ),
-        Card(
-          elevation: 5,
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 28.0, left: 18.0, right: 18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Students",
-                  style: GoogleFonts.poppins(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Container(
-                        height: 15,
-                        width: 15,
-                        decoration: BoxDecoration(
-                          color: Colors.cyanAccent[200]!,
-                          shape: BoxShape.circle,
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      "Cleared",
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Container(
-                        height: 15,
-                        width: 15,
-                        decoration: const BoxDecoration(
-                          color: Colors.cyan,
-                          shape: BoxShape.circle,
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      "Blocked",
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 30,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: _width / 64,
-                    ),
-                    CircularPercentIndicator(
-                      radius: 110.0,
-                      animation: true,
-                      animationDuration: 1200,
-                      lineWidth: 10.0,
-                      percent: 0.4,
-                      center: Text(
-                        "40 hours",
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 14.0),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.cyanAccent[200]!,
-                      progressColor: Colors.cyan,
-                    ),
-                    SizedBox(
-                      width: _width / 64,
-                    ),
-                    CircularPercentIndicator(
-                      radius: 110.0,
-                      animation: true,
-                      animationDuration: 1200,
-                      lineWidth: 10.0,
-                      percent: 0.4,
-                      center: Text(
-                        "40 hours",
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 14.0),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.cyanAccent[200]!,
-                      progressColor: Colors.cyan,
-                    ),
-                    SizedBox(
-                      width: _width / 64,
-                    ),
-                    CircularPercentIndicator(
-                      radius: 110.0,
-                      animation: true,
-                      animationDuration: 1200,
-                      lineWidth: 10.0,
-                      percent: 0.4,
-                      center: Text(
-                        "40 hours",
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 14.0),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.cyanAccent[200]!,
-                      progressColor: Colors.cyan,
-                    ),
-                    SizedBox(
-                      width: _width / 64,
-                    ),
-                    CircularPercentIndicator(
-                      radius: 110.0,
-                      animation: true,
-                      animationDuration: 1200,
-                      lineWidth: 10.0,
-                      percent: 0.4,
-                      center: Text(
-                        "40 hours",
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 14.0),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.cyanAccent[200]!,
-                      progressColor: Colors.cyan,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        )
+      //   SizedBox(
+      //     height: MediaQuery.of(context).size.height / 15,
+      //   ),
+      //   Card(
+      //     elevation: 5,
+      //     color: Colors.white,
+      //     child: Padding(
+      //       padding: const EdgeInsets.only(top: 28.0, left: 18.0, right: 18.0),
+      //       child: Column(
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         children: [
+      //           Text(
+      //             "Students",
+      //             style: GoogleFonts.poppins(
+      //               fontSize: 25,
+      //               fontWeight: FontWeight.w600,
+      //               color: Colors.black,
+      //             ),
+      //           ),
+      //           Row(
+      //             children: [
+      //               Container(
+      //                   height: 15,
+      //                   width: 15,
+      //                   decoration: BoxDecoration(
+      //                     color: Colors.cyanAccent[200]!,
+      //                     shape: BoxShape.circle,
+      //                   )),
+      //               const SizedBox(
+      //                 width: 10,
+      //               ),
+      //               const Text(
+      //                 "Cleared",
+      //               ),
+      //             ],
+      //           ),
+      //           const SizedBox(height: 10),
+      //           Row(
+      //             children: [
+      //               Container(
+      //                   height: 15,
+      //                   width: 15,
+      //                   decoration: const BoxDecoration(
+      //                     color: Colors.cyan,
+      //                     shape: BoxShape.circle,
+      //                   )),
+      //               const SizedBox(
+      //                 width: 10,
+      //               ),
+      //               const Text(
+      //                 "Blocked",
+      //               ),
+      //             ],
+      //           ),
+      //           SizedBox(
+      //             height: MediaQuery.of(context).size.height / 30,
+      //           ),
+      //           Row(
+      //             children: [
+      //               SizedBox(
+      //                 width: _width / 64,
+      //               ),
+      //               CircularPercentIndicator(
+      //                 radius: 110.0,
+      //                 animation: true,
+      //                 animationDuration: 1200,
+      //                 lineWidth: 10.0,
+      //                 percent: 0.4,
+      //                 center: Text(
+      //                   "40 hours",
+      //                   style: GoogleFonts.poppins(
+      //                       fontWeight: FontWeight.bold, fontSize: 14.0),
+      //                 ),
+      //                 circularStrokeCap: CircularStrokeCap.round,
+      //                 backgroundColor: Colors.cyanAccent[200]!,
+      //                 progressColor: Colors.cyan,
+      //               ),
+      //               SizedBox(
+      //                 width: _width / 64,
+      //               ),
+      //               CircularPercentIndicator(
+      //                 radius: 110.0,
+      //                 animation: true,
+      //                 animationDuration: 1200,
+      //                 lineWidth: 10.0,
+      //                 percent: 0.4,
+      //                 center: Text(
+      //                   "40 hours",
+      //                   style: GoogleFonts.poppins(
+      //                       fontWeight: FontWeight.bold, fontSize: 14.0),
+      //                 ),
+      //                 circularStrokeCap: CircularStrokeCap.round,
+      //                 backgroundColor: Colors.cyanAccent[200]!,
+      //                 progressColor: Colors.cyan,
+      //               ),
+      //               SizedBox(
+      //                 width: _width / 64,
+      //               ),
+      //               CircularPercentIndicator(
+      //                 radius: 110.0,
+      //                 animation: true,
+      //                 animationDuration: 1200,
+      //                 lineWidth: 10.0,
+      //                 percent: 0.4,
+      //                 center: Text(
+      //                   "40 hours",
+      //                   style: GoogleFonts.poppins(
+      //                       fontWeight: FontWeight.bold, fontSize: 14.0),
+      //                 ),
+      //                 circularStrokeCap: CircularStrokeCap.round,
+      //                 backgroundColor: Colors.cyanAccent[200]!,
+      //                 progressColor: Colors.cyan,
+      //               ),
+      //               SizedBox(
+      //                 width: _width / 64,
+      //               ),
+      //               CircularPercentIndicator(
+      //                 radius: 110.0,
+      //                 animation: true,
+      //                 animationDuration: 1200,
+      //                 lineWidth: 10.0,
+      //                 percent: 0.4,
+      //                 center: Text(
+      //                   "40 hours",
+      //                   style: GoogleFonts.poppins(
+      //                       fontWeight: FontWeight.bold, fontSize: 14.0),
+      //                 ),
+      //                 circularStrokeCap: CircularStrokeCap.round,
+      //                 backgroundColor: Colors.cyanAccent[200]!,
+      //                 progressColor: Colors.cyan,
+      //               ),
+      //             ],
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   )
       ],
     );
   }

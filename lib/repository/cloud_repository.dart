@@ -32,4 +32,11 @@ class CloudRepository {
       }).toList();
     });
   }
+
+  Future<String> getCollectionStats() async {
+    QuerySnapshot querySnapshot = await _firestore
+        .collection(incidentsPath).get();
+
+    return querySnapshot.docs.map((doc) => doc.data()).toList().length.toString();
+  }
 }

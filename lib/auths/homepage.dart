@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:schoolmanagement/auths/authmodels/sidemenus.dart';
-import 'package:schoolmanagement/auths/overviewcards/dashboars.dart';
+import 'package:schoolmanagement/auths/overviewcards/dashboards.dart';
 import 'package:schoolmanagement/auths/overviewcards/services.dart';
 import 'package:schoolmanagement/auths/overviewcards/style.dart';
 import 'package:schoolmanagement/customtext.dart';
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Visibility(
                   child: CustomText(
-                text: 'e-clearance',
+                text: 'Guard Suites',
                 color: lightgrey,
                 size: 20,
                 fontWeight: FontWeight.bold,
