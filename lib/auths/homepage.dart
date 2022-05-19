@@ -17,8 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  SideBarWidget _sideBarWidget = SideBarWidget();
-   User? user = FirebaseAuth.instance.currentUser;
+  final SideBarWidget _sideBarWidget = SideBarWidget();
+  User? user = FirebaseAuth.instance.currentUser;
   FirebaseServices? _firebaseServices;
 
   @override
@@ -116,9 +116,9 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
-              children: <Widget>[
+              children: const <Widget>[
                 Visibility(
-        //   visible:_firebaseServices!.bursary.where("email",isEqualTo: user!.email).where("stackholder", isEqualTo: 'super-admin').snapshots()!=null,
+                    //   visible:_firebaseServices!.bursary.where("email",isEqualTo: user!.email).where("stackholder", isEqualTo: 'super-admin').snapshots()!=null,
                     child: OverviewCards()),
               ],
             ),

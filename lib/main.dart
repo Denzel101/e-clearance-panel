@@ -1,16 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/profilesections.dart';
 import 'package:schoolmanagement/auths/stakeholders.dart';
 import 'package:schoolmanagement/auths/students.dart';
+import 'package:schoolmanagement/firebase_options.dart';
+import 'package:schoolmanagement/locator.dart';
+
 import 'auths/login.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setUpLocator();
+  runApp(MyApp(
+    firebaseAuth: FirebaseAuth.instance,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.firebaseAuth}) : super(key: key);
+  final FirebaseAuth firebaseAuth;
+
+  String _decideInitialPage() {
+    if (firebaseAuth.currentUser != null) {
+      return HomePage.id;
+    } else {
+      return Login.id;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,15 +39,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Login(),
-       routes: {
-      
-        HomePage.id:(_)=> HomePage(),
-        StakeHolders.tag:(_)=> StakeHolders(),
-        ProfileSection.routeName:(_)=> ProfileSection(),
-        Students.id:(_)=> Students(),
+      initialRoute: _decideInitialPage(),
+      routes: {
+        Login.id: (_) => const Login(),
+        HomePage.id: (_) => const HomePage(),
+        StakeHolders.tag: (_) => const StakeHolders(),
+        ProfileSection.routeName: (_) => const ProfileSection(),
+        Students.id: (_) => const Students(),
       },
     );
   }
 }
-
