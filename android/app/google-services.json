@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "281067736574",
+    "project_id": "guard-suites",
+    "storage_bucket": "guard-suites.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281067736574:android:3fce25641b803960bf44af",
+        "android_client_info": {
+          "package_name": "com.example.guard_suits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281067736574-0ivsbe3gn3b58k1fi5pasr0m4g6i7pm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuMhCrJZ7raQbuYB2BAXbVVK1LN9hW0Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281067736574-0ivsbe3gn3b58k1fi5pasr0m4g6i7pm3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "281067736574-p713nhv1pc0ouj0qla9datisvpqrf8j0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.guardSuits"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281067736574:android:6b8ac0ad02c100c8bf44af",
+        "android_client_info": {
+          "package_name": "com.example.schoolmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281067736574-0ivsbe3gn3b58k1fi5pasr0m4g6i7pm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuMhCrJZ7raQbuYB2BAXbVVK1LN9hW0Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281067736574-0ivsbe3gn3b58k1fi5pasr0m4g6i7pm3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "281067736574-p713nhv1pc0ouj0qla9datisvpqrf8j0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.guardSuits"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

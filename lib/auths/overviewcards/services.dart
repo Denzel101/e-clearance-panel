@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,10 +10,11 @@ class FirebaseServices {
       FirebaseFirestore.instance.collection("Bursary");
   CollectionReference registeredStudents =
       FirebaseFirestore.instance.collection("users");
-  CollectionReference admins =
-      FirebaseFirestore.instance.collection("Admin");
-      CollectionReference recentctivities =
+  CollectionReference admins = FirebaseFirestore.instance.collection("Admin");
+  CollectionReference recentctivities =
       FirebaseFirestore.instance.collection("recentactivies");
+  CollectionReference incidents =
+      FirebaseFirestore.instance.collection("incidents");
   //FirebaseStorage storage = FirebaseStorage.instance;
 
   Future<DocumentSnapshot> getAdmindetaiils(id) async {
@@ -83,7 +83,7 @@ class FirebaseServices {
                 ),
               ),
               onPressed: () {
-               // deleteBannerImageFromDB(id);
+                // deleteBannerImageFromDB(id);
                 Navigator.pop(context);
               },
             ),
@@ -124,27 +124,26 @@ class FirebaseServices {
   clearedStudents({id, cleared}) async {
     registeredStudents.doc(id).update({
       'cleared': cleared,
-       
     });
   }
-  Future<void>updateCleared({String? title, message, email, date})async{
+
+  Future<void> updateCleared({String? title, message, email, date}) async {
     User? user = FirebaseAuth.instance.currentUser;
     recentctivities.doc().set({
       'title': 'Cleared Status',
-       'message': 'you have been cleared successfully',
-       'date': date,
-       'email': email,
+      'message': 'you have been cleared successfully',
+      'date': date,
+      'email': email,
     });
-
   }
-   Future<void>updateBlocked({String? title, message, email, date})async{
+
+  Future<void> updateBlocked({String? title, message, email, date}) async {
     User? user = FirebaseAuth.instance.currentUser;
     recentctivities.doc().set({
       'title': 'Cleared Status',
-       'message': 'you have been blocked',
-       'date': date,
-       'email': email,
+      'message': 'you have been blocked',
+      'date': date,
+      'email': email,
     });
-
   }
 }
