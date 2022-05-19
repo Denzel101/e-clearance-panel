@@ -2,7 +2,7 @@ class ObModel {
   final String id;
   final String uid;
   final DateTime dateTime;
-  final String alarmType;
+  final String incidentType;
   final String reportBy;
   final String incidentBrief;
   final String department;
@@ -14,7 +14,7 @@ class ObModel {
     required this.id,
     required this.uid,
     required this.dateTime,
-    required this.alarmType,
+    required this.incidentType,
     required this.reportBy,
     required this.incidentBrief,
     required this.department,
@@ -28,7 +28,7 @@ class ObModel {
       'id': id,
       'uid': uid,
       'dateTime': dateTime.millisecondsSinceEpoch,
-      'alarmType': alarmType,
+      'alarmType': incidentType,
       'reportBy': reportBy,
       'incidentBrief': incidentBrief,
       'department': department,
@@ -43,7 +43,7 @@ class ObModel {
       id: map['id'] ?? '',
       uid: map['uid'] ?? '',
       dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime']),
-      alarmType: map['alarmType'] ?? '',
+      incidentType: map['alarmType'] ?? '',
       reportBy: map['reportBy'] ?? '',
       incidentBrief: map['incidentBrief'] ?? '',
       department: map['department'] ?? '',
