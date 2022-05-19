@@ -140,7 +140,7 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              'Clearance  system'
+              'Guard Suites Systems'
                   .toLabel(bold: true, color: Colors.grey, fontSize: 20),
               const SizedBox(
                 height: 15,

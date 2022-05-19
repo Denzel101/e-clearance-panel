@@ -20,7 +20,7 @@ class SideBarWidget {
       ),
       // backgroundColor: Colors.black54,
       items: const [
-        MenuItem(
+        AdminMenuItem(
           title: 'Dashboard',
           route: HomePage.id,
           icon: Icons.dashboard,
@@ -35,8 +35,8 @@ class SideBarWidget {
         //   route: ProfileSection.routeName,
         //   icon: Icons.person_outlined,
         // ),
-        MenuItem(
-          title: 'Students',
+        AdminMenuItem(
+          title: 'OB',
           route: Students.id,
           icon: Icons.person_outlined,
         ),
