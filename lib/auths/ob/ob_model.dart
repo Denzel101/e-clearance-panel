@@ -9,6 +9,7 @@ class ObModel {
   final String escalateTo;
   final String threatLevel;
   final String site;
+  final String resolution;
 
   ObModel({
     required this.id,
@@ -21,6 +22,7 @@ class ObModel {
     required this.escalateTo,
     required this.threatLevel,
     required this.site,
+    required this.resolution,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,13 +30,14 @@ class ObModel {
       'id': id,
       'uid': uid,
       'dateTime': dateTime.millisecondsSinceEpoch,
-      'alarmType': incidentType,
+      'incidentType': incidentType,
       'reportBy': reportBy,
       'incidentBrief': incidentBrief,
       'department': department,
       'escalateTo': escalateTo,
       'threatLevel': threatLevel,
       'site': site,
+      'resolution': resolution,
     };
   }
 
@@ -43,9 +46,10 @@ class ObModel {
       id: map['id'] ?? '',
       uid: map['uid'] ?? '',
       dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime']),
-      incidentType: map['alarmType'] ?? '',
+      incidentType: map['incidentType'] ?? '',
       reportBy: map['reportBy'] ?? '',
       incidentBrief: map['incidentBrief'] ?? '',
+      resolution: map['resolution'] ?? '',
       department: map['department'] ?? '',
       escalateTo: map['escalateTo'] ?? '',
       threatLevel: map['threatLevel'] ?? '',
