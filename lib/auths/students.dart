@@ -4,6 +4,7 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:schoolmanagement/auths/authmodels/sidemenus.dart';
 import 'package:schoolmanagement/auths/ob/table_model.dart';
 import 'package:schoolmanagement/auths/overviewcards/services.dart';
+import 'package:schoolmanagement/auths/overviewcards/student_details.dart';
 import 'package:schoolmanagement/auths/overviewcards/style.dart';
 import 'package:schoolmanagement/customtext.dart';
 
@@ -180,14 +181,40 @@ class _StudentsState extends State<Students> {
     final occurence = TableModel.fromSnapshot(data);
 
     return DataRow(cells: [
-      DataCell(Text(occurence.incidentType)),
-      DataCell(Text(occurence.reportBy)),
-      DataCell(Text(occurence.department)),
-      DataCell(Text(occurence.escalateTo)),
-      DataCell(Text(occurence.threatLevel)),
-      DataCell(Text(occurence.site)),
-      DataCell(Text(occurence.incidentBrief)),
-      DataCell(Text(occurence.resolution)),
+      DataCell(SizedBox(child: Text(occurence.incidentType))),
+      DataCell(SizedBox(child: Text(occurence.reportBy))),
+      DataCell(SizedBox(child: Text(occurence.department))),
+      DataCell(SizedBox(child: Text(occurence.escalateTo))),
+      DataCell(SizedBox(child: Text(occurence.threatLevel))),
+      DataCell(SizedBox(child: Text(occurence.site))),
+      DataCell(
+        SizedBox(
+            width: 200,
+            child: Text(
+              occurence.incidentBrief,
+              overflow: TextOverflow.ellipsis,
+            )),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      StudentDetails(briefStatement: occurence.incidentBrief)));
+        },
+      ),
+      DataCell(
+          SizedBox(
+              width: 200,
+              child: Text(
+                occurence.resolution,
+                overflow: TextOverflow.ellipsis,
+              )), onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    StudentDetails(briefStatement: occurence.incidentBrief)));
+      }),
     ]);
   }
 }
