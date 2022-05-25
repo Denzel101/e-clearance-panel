@@ -21,7 +21,7 @@ import '../widgets/submit_button.dart';
 import 'overviewcards/data.dart';
 
 class StakeHolders extends StatefulWidget {
-  static String tag = 'stakeholders';
+  static String tag = 'incidents';
   const StakeHolders({Key? key}) : super(key: key);
 
   @override
@@ -33,8 +33,8 @@ class _StakeHoldersState extends State<StakeHolders> {
   final SideBarWidget _sideBar = SideBarWidget();
   File? file;
   String? selectedItem = 'High';
-  String? escalatedSelectedItem = 'CEO';
-  String? siteSelectedItem = 'Juja';
+  String? escalatedSelectedItem = 'Head of Operations';
+  String? siteSelectedItem = 'Delta Plains';
   String? departmentSelectedItem = 'SECURITY';
   String? incidentSelectedItem = 'Crime';
 
@@ -115,7 +115,7 @@ class _StakeHoldersState extends State<StakeHolders> {
           children: [
             Visibility(
                 child: CustomText(
-              text: 'e-clearance',
+              text: 'GUARD SUITES PLUS',
               color: lightgrey,
               size: 20,
               fontWeight: FontWeight.bold,

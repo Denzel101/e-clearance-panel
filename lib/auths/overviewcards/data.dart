@@ -1,11 +1,9 @@
 final List<String> threatLevelItems = ['High', 'Medium', 'Low'];
 final List<String> escalateToItems = [
-  'CEO',
   'Head of Operations',
-  'Head of Cusomer Relations',
-  'NULL'
+  'Head of Customer Relations',
 ];
-final List<String> sitesListItems = ['Pangani', 'Juja', 'Kasarani', 'Ruaka'];
+final List<String> sitesListItems = ['Delta Plains', 'Nextgen Mall', 'Greenpark', 'Carrefour'];
 
 final List<String> departmentListItems = ['SECURITY'];
 

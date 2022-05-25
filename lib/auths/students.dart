@@ -29,9 +29,9 @@ class _StudentsState extends State<Students> {
             children: [
               Visibility(
                   child: CustomText(
-                text: 'e-clearance',
+                text: 'GUARD SUITES PLUS',
                 color: lightgrey,
-                size: 20,
+                size: 18,
                 fontWeight: FontWeight.bold,
               )),
               Expanded(
