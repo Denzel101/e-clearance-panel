@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/students.dart';
 
+import '../stakeholders.dart';
+
 class SideBarWidget {
   SideBarMenus(context, selectedRoute) {
     return SideBar(
@@ -19,23 +21,23 @@ class SideBarWidget {
         color: Colors.white,
       ),
       // backgroundColor: Colors.black54,
-      items: const [
-        AdminMenuItem(
+      items: [
+        const AdminMenuItem(
           title: 'Dashboard',
           route: HomePage.id,
           icon: Icons.dashboard,
         ),
-        // MenuItem(
-        //   title: 'StakeHolders',
-        //   route: StakeHolders.tag,
-        //   icon: Icons.height_outlined,
-        // ),
+        AdminMenuItem(
+          title: 'Incidents',
+          route: StakeHolders.tag,
+          icon: Icons.report,
+        ),
         // const MenuItem(
         //   title: 'Profile Section',
         //   route: ProfileSection.routeName,
         //   icon: Icons.person_outlined,
         // ),
-        AdminMenuItem(
+        const AdminMenuItem(
           title: 'OB',
           route: Students.id,
           icon: Icons.person_outlined,
