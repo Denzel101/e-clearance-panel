@@ -29,9 +29,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               Visibility(
                   child: CustomText(
-                text: 'Guard Suites',
+                text: 'GUARD SUITES PLUS',
                 color: lightgrey,
-                size: 20,
+                size: 18,
                 fontWeight: FontWeight.bold,
               )),
               Expanded(
