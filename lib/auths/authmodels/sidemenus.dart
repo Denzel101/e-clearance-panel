@@ -4,6 +4,7 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/students.dart';
+import 'package:schoolmanagement/ob.dart';
 
 import '../stakeholders.dart';
 
@@ -40,6 +41,11 @@ class SideBarWidget {
         const AdminMenuItem(
           title: 'OB',
           route: Students.id,
+          icon: Icons.person_outlined,
+        ),
+        const AdminMenuItem(
+          title: 'NEW OB',
+          route: OB.id,
           icon: Icons.person_outlined,
         ),
       ],
