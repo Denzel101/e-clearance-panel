@@ -3,9 +3,28 @@ final List<String> escalateToItems = [
   'Head of Operations',
   'Head of Customer Relations',
 ];
-final List<String> sitesListItems = ['Delta Plains', 'Nextgen Mall', 'Greenpark', 'Carrefour'];
+final List<String> sitesListItems = ['Delta Plains',
+  'Nextgen Mall',
+  'Greenpark',
+  'Carrefour',
+  'Sokowatch Kakamega',
+  'Sokowatch Machakos',
+  'Sokowatch Kisii',
+  'Sokowatch Kamakis',
+  'Jeff Hamilton Court',
+  'Enkan Villas',
+  'Alliance Towers Kilifi',
+  'Elsie Ridge/Spring Valley',
+  'Sokowatch Mombasa',
+  'Sokowatch Kilifi',
+  'Sokowatch Kikuyu',
+  'Sokowatch Meru',
+  'Kyosk Eldoret'];
 
-final List<String> departmentListItems = ['SECURITY'];
+final List<String> departmentListItems = ['SECURITY',
+  'MANPOWER',
+  'FACILITY',
+  'CONTROL ROOM',];
 
 final List<String> incidentListItems = [
   'Crime',
