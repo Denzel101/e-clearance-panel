@@ -129,6 +129,7 @@ class _OverHistoryState extends State<OverHistory> {
           textAlign: TextAlign.center),
       DatatableHeader(
           text: "Narrative",
+          flex: 3,
           value: "narrative",
           show: true,
           sortable: false,
@@ -143,6 +144,7 @@ class _OverHistoryState extends State<OverHistory> {
       DatatableHeader(
           text: "Comment",
           value: "comment",
+          flex: 2,
           show: true,
           sortable: true,
           textAlign: TextAlign.center),
