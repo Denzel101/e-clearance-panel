@@ -35,8 +35,11 @@ class _OverScreenState extends State<OverScreen> {
       TextEditingController();
   final TextEditingController commentTextEditingController =
       TextEditingController();
+  final TextEditingController siteTextEditingController =
+      TextEditingController();
   final FocusNode nameTakeOverFocusNode = FocusNode();
   final FocusNode nameHandOverFocusNode = FocusNode();
+  final FocusNode siteFocusNode = FocusNode();
   final FocusNode commentFocusNode = FocusNode();
   final FocusNode narrativeTakeOverFocuNode = FocusNode();
   final FocusNode narrativeHandOverFocuNode = FocusNode();
@@ -54,18 +57,21 @@ class _OverScreenState extends State<OverScreen> {
 
   @override
   void dispose() {
+    siteTextEditingController.dispose();
     nameHandOverTextEditingController.dispose();
     nameTakeOverTextEditingController.dispose();
     commentTextEditingController.dispose();
     narrativeHandOverTextEditingController.dispose();
     narrativeTakeOverTextEditingController.dispose();
     acceptingNameTextEditingController.dispose();
+
     acceptingNameFocusNode.dispose();
     narrativeHandOverFocuNode.dispose();
     narrativeTakeOverFocuNode.dispose();
     nameTakeOverFocusNode.dispose();
     nameHandOverFocusNode.dispose();
     commentFocusNode.dispose();
+    siteFocusNode.dispose();
     super.dispose();
   }
 
@@ -77,6 +83,7 @@ class _OverScreenState extends State<OverScreen> {
     acceptingNameFocusNode.unfocus();
     acceptingNameFocusNode.unfocus();
     commentFocusNode.unfocus();
+    siteFocusNode.unfocus();
   }
 
   void _clearFormField() {
@@ -87,6 +94,7 @@ class _OverScreenState extends State<OverScreen> {
     acceptingNameTextEditingController.clear();
     acceptingNameTextEditingController.clear();
     commentTextEditingController.clear();
+    siteTextEditingController.clear();
   }
 
   @override
@@ -235,35 +243,26 @@ class _OverScreenState extends State<OverScreen> {
                             SizedBox(
                               height: size.height * 0.02,
                             ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: DropdownButtonFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Sites',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    borderSide: const BorderSide(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                                value: selectedSite,
-                                items: sitesListItems
-                                    .map((item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style:
-                                              const TextStyle(fontSize: 20.0),
-                                        )))
-                                    .toList(),
-                                onChanged: (String? item) {
-                                  setState(() => selectedSite = item);
-                                },
-                              ),
+                            CustomTextField(
+                              onTap: () {},
+                              label: 'Site',
+                              obscure: false,
+                              keyBoard: TextInputType.text,
+                              mFocusNode: siteFocusNode,
+                              textCapitalization: TextCapitalization.sentences,
+                              maxLines: 1,
+                              mValidation: (value) {
+                                if (value!.trim().isEmpty) {
+                                  return 'Site is required';
+                                } else if (value.trim().length <= 4) {
+                                  return 'Site must contain more than \n5 characters';
+                                }
+                                return null;
+                              },
+                              textEditingController: siteTextEditingController,
+                              mOnSaved: (String? value) {
+                                siteTextEditingController.text = value!;
+                              },
                             ),
                             SizedBox(
                               height: size.height * 0.02,
@@ -333,7 +332,7 @@ class _OverScreenState extends State<OverScreen> {
                                       narrative:
                                           narrativeHandOverTextEditingController
                                               .text,
-                                      site: selectedSite!,
+                                      site: siteTextEditingController.text,
                                     );
                                 _clearFormField();
                                 Provider.of<NotificationState>(context,

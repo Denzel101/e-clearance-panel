@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:path/path.dart';
@@ -40,23 +38,31 @@ class _StakeHoldersState extends State<StakeHolders> {
 
   late TextEditingController reportedByTextEditingController,
       resolutionTextEditingController,
-      incidentBriefTextEditingController;
+      incidentBriefTextEditingController,
+      siteTextEditingController,
+      otherTextEditingController;
 
   late FocusNode alarmTypeFocusNode,
       resolutionFocusNode,
       reportByFocusNode,
-      incidentFocusNode;
+      incidentFocusNode,
+      siteFocusNode,
+      otherFocusNode;
 
   @override
   void initState() {
     reportedByTextEditingController = TextEditingController();
     resolutionTextEditingController = TextEditingController();
     incidentBriefTextEditingController = TextEditingController();
+    siteTextEditingController = TextEditingController();
+    otherTextEditingController = TextEditingController();
 
     resolutionFocusNode = FocusNode();
+    otherFocusNode = FocusNode();
     alarmTypeFocusNode = FocusNode();
     reportByFocusNode = FocusNode();
     incidentFocusNode = FocusNode();
+    siteFocusNode = FocusNode();
 
     super.initState();
   }
@@ -66,8 +72,12 @@ class _StakeHoldersState extends State<StakeHolders> {
     reportedByTextEditingController.dispose();
     resolutionTextEditingController.dispose();
     incidentBriefTextEditingController.dispose();
+    siteTextEditingController.dispose();
+    otherTextEditingController.dispose();
 
     reportByFocusNode.dispose();
+    otherFocusNode.dispose();
+    siteFocusNode.dispose();
     resolutionFocusNode.dispose();
     incidentFocusNode.dispose();
 
@@ -79,11 +89,17 @@ class _StakeHoldersState extends State<StakeHolders> {
 
     reportByFocusNode.unfocus();
     incidentFocusNode.unfocus();
+    siteFocusNode.unfocus();
+    otherFocusNode.dispose();
+    resolutionFocusNode.dispose();
   }
 
   void _clearFormField() {
     reportedByTextEditingController.clear();
     incidentBriefTextEditingController.clear();
+    otherTextEditingController.clear();
+    resolutionTextEditingController.clear();
+    siteTextEditingController.clear();
   }
 
   //upload files to database
@@ -235,6 +251,40 @@ class _StakeHoldersState extends State<StakeHolders> {
                   },
                 ),
               ),
+              Builder(builder: (context) {
+                if (incidentSelectedItem == 'Other') {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      CustomTextField(
+                        onTap: () {},
+                        label: 'Tell us more...',
+                        obscure: false,
+                        keyBoard: TextInputType.text,
+                        mFocusNode: otherFocusNode,
+                        textCapitalization: TextCapitalization.sentences,
+                        maxLines: 1,
+                        mValidation: (value) {
+                          if (value!.trim().isEmpty) {
+                            return 'Text is required';
+                          } else if (value.trim().length <= 4) {
+                            return 'Text must contain more than \n5 characters';
+                          }
+                          return null;
+                        },
+                        textEditingController: otherTextEditingController,
+                        mOnSaved: (String? value) {
+                          otherTextEditingController.text = value!;
+                        },
+                      ),
+                    ],
+                  );
+                } else {
+                  return Container();
+                }
+              }),
               SizedBox(
                 height: size.height * 0.02,
               ),
@@ -358,34 +408,26 @@ class _StakeHoldersState extends State<StakeHolders> {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Sites',
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderSide: const BorderSide(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  value: siteSelectedItem,
-                  items: sitesListItems
-                      .map((item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style: const TextStyle(fontSize: 20.0),
-                          )))
-                      .toList(),
-                  onChanged: (String? item) {
-                    setState(() => siteSelectedItem = item);
-                  },
-                ),
+              CustomTextField(
+                onTap: () {},
+                label: 'Site',
+                obscure: false,
+                keyBoard: TextInputType.text,
+                mFocusNode: siteFocusNode,
+                textCapitalization: TextCapitalization.sentences,
+                maxLines: 1,
+                mValidation: (value) {
+                  if (value!.trim().isEmpty) {
+                    return 'Site is required';
+                  } else if (value.trim().length <= 4) {
+                    return 'Site must contain more than \n5 characters';
+                  }
+                  return null;
+                },
+                textEditingController: siteTextEditingController,
+                mOnSaved: (String? value) {
+                  siteTextEditingController.text = value!;
+                },
               ),
               SizedBox(
                 height: size.height * 0.02,
@@ -469,6 +511,7 @@ class _StakeHoldersState extends State<StakeHolders> {
                           escalatedTo: escalatedSelectedItem!,
                           threatLevel: selectedItem!,
                           site: siteSelectedItem!,
+                          other: otherTextEditingController.text,
                           resolution: resolutionTextEditingController.text,
                         );
                     await uploadFile();

@@ -20,7 +20,8 @@ final List<String> sitesListItems = [
   'Sokowatch Kilifi',
   'Sokowatch Kikuyu',
   'Sokowatch Meru',
-  'Kyosk Eldoret'
+  'Kyosk Eldoret',
+  'Operation Center'
 ];
 
 final List<String> departmentListItems = [
@@ -29,7 +30,6 @@ final List<String> departmentListItems = [
   'FACILITY',
   'CONTROL ROOM',
 ];
-
 
 final List<String> incidentListItems = [
   'Crime',
