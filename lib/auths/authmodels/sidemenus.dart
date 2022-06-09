@@ -33,20 +33,20 @@ class SideBarWidget {
           route: StakeHolders.tag,
           icon: Icons.report,
         ),
-        // const MenuItem(
-        //   title: 'Profile Section',
-        //   route: ProfileSection.routeName,
-        //   icon: Icons.person_outlined,
-        // ),
         const AdminMenuItem(
           title: 'OB',
-          route: Students.id,
-          icon: Icons.person_outlined,
-        ),
-        const AdminMenuItem(
-          title: 'NEW OB',
           route: OB.id,
-          icon: Icons.person_outlined,
+          icon: Icons.book_outlined,
+        ),
+        AdminMenuItem(
+          title: 'Handing/Taking over',
+          route: StakeHolders.tag,
+          icon: Icons.handshake_outlined,
+        ),
+        AdminMenuItem(
+          title: 'Handing/Taking over history',
+          route: StakeHolders.tag,
+          icon: Icons.book_online,
         ),
       ],
       selectedRoute: selectedRoute,

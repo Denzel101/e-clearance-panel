@@ -13,6 +13,7 @@ import 'package:schoolmanagement/ob.dart';
 import 'package:schoolmanagement/provider/notification_state.dart';
 
 import 'auths/login.dart';
+import 'over.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,8 +54,8 @@ class MyApp extends StatelessWidget {
             HomePage.id: (_) => const HomePage(),
             StakeHolders.tag: (_) => const StakeHolders(),
             ProfileSection.routeName: (_) => const ProfileSection(),
-            Students.id: (_) => const Students(),
             OB.id: (_) => const OB(),
+            Over.id: (_) => const Over()
           },
         ),
       ),

@@ -1,17 +1,25 @@
+import 'dart:html';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:responsive_table/responsive_table.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:schoolmanagement/auths/ob/ob_model.dart';
 
+import 'auths/authmodels/sidemenus.dart';
+import 'auths/overviewcards/style.dart';
+import 'customtext.dart';
+
 class OB extends StatefulWidget {
-  static const String id = 'new b';
+  static const String id = 'ob';
+  static String tag = 'ob';
   const OB({Key? key}) : super(key: key);
   @override
   _OBState createState() => _OBState();
 }
 
 class _OBState extends State<OB> {
+  final SideBarWidget _sideBar = SideBarWidget();
   late List<DatatableHeader> _headers;
   List<int> _perPages = [10, 20, 50, 100];
   int _total = 100;
@@ -37,47 +45,30 @@ class _OBState extends State<OB> {
   bool _showSelect = true;
   var random = new Random();
 
-
-  testFirebase() {
-    Stream<QuerySnapshot<Map<String, dynamic>>> query = FirebaseFirestore.instance.collection('incidents').snapshots();
-
-  }
-
-  List<Map<String, dynamic>> _generateData({int n: 100}) {
-    final List source = List.filled(n, Random.secure());
-    List<Map<String, dynamic>> temps = [];
-    var i = 1;
-    print(i);
-    // ignore: unused_local_variable
-    for (var data in source) {
-      temps.add({
-        "id": i,
-        "sku": "$i\000$i",
-        "name": "Product $i",
-        "category": "Category-$i",
-        "price": i * 10.00,
-        "cost": "20.00",
-        "margin": "${i}0.20",
-        "in_stock": "${i}0",
-        "alert": "5",
-        "received": [i + 20, 150]
-      });
-      i++;
-    }
-    return temps;
+  Future<List<Map<String, dynamic>>> getData() async{
+    List<Map<String, dynamic>> _data = [];
+    final  _collectionRef = FirebaseFirestore.instance;
+    await _collectionRef.collection("incidents").get().then((event) {
+      for (var doc in event.docs) {
+        _data.add(doc.data());
+      }
+    });
+    return _data;
   }
 
   _initializeData() async {
+    print(await getData());
     _mockPullData();
   }
 
   _mockPullData() async {
     _expanded = List.generate(_currentPerPage!, (index) => false);
-
+    Future<List<Map<String, dynamic>>> _futureList = getData();
+    List<Map<String, dynamic>> list = await _futureList;
     setState(() => _isLoading = true);
     Future.delayed(Duration(seconds: 3)).then((value) {
       _sourceOriginal.clear();
-      _sourceOriginal.addAll(_generateData(n: random.nextInt(10000)));
+      _sourceOriginal.addAll(list);
       _sourceFiltered = _sourceOriginal;
       _total = _sourceFiltered.length;
       _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
@@ -129,79 +120,56 @@ class _OBState extends State<OB> {
     /// set headers
     _headers = [
       DatatableHeader(
-          text: "ID",
-          value: "id",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
-      DatatableHeader(
-          text: "Name",
-          value: "name",
-          show: true,
-          flex: 2,
-          sortable: true,
-          editable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "SKU",
-          value: "sku",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
-      DatatableHeader(
-          text: "Category",
-          value: "category",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Price",
-          value: "price",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Margin",
-          value: "margin",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "In Stock",
-          value: "in_stock",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Alert",
-          value: "alert",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Received",
-          value: "received",
+          text: "Site",
+          value: "site",
           show: true,
           sortable: false,
-          sourceBuilder: (value, row) {
-            List list = List.from(value);
-            return Container(
-              child: Column(
-                children: [
-                  Container(
-                    width: 85,
-                    child: LinearProgressIndicator(
-                      value: list.first / list.last,
-                    ),
-                  ),
-                  Text("${list.first} of ${list.last}")
-                ],
-              ),
-            );
-          },
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Department",
+          value: "department",
+          show: true,
+          sortable: false,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Escalated To",
+          value: "escalateTo",
+          show: true,
+          sortable: false,
+          editable: false,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Incident Type",
+          value: "incidentType",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Reported By",
+          value: "reportBy",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Threat Level",
+          value: "threatLevel",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Incident Brief",
+          value: "incidentBrief",
+          flex: 3,
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Resolution",
+          value: "resolution",
+          show: true,
+          sortable: true,
           textAlign: TextAlign.center),
     ];
-
     _initializeData();
   }
 
@@ -212,26 +180,94 @@ class _OBState extends State<OB> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdminScaffold(
       appBar: AppBar(
-        title: Text("RESPONSIVE DATA TABLE"),
-      ),
-      drawer: Drawer(
-        child: ListView(
+        title: Row(
           children: [
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("home"),
-              onTap: () {},
+            Visibility(
+                child: CustomText(
+                  text: 'GUARD SUITES PLUS',
+                  color: lightgrey,
+                  size: 20,
+                  fontWeight: FontWeight.bold,
+                )),
+            Expanded(
+              child: Container(),
             ),
-            ListTile(
-              leading: Icon(Icons.storage),
-              title: Text("data"),
-              onTap: () {},
+            IconButton(
+              icon: const Icon(Icons.settings),
+              color: dark.withOpacity(.7),
+              onPressed: () {},
+            ),
+            Stack(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.notifications,
+                    color: dark.withOpacity(.7),
+                  ),
+                ),
+                Positioned(
+                    top: 7,
+                    right: 7,
+                    child: Container(
+                        width: 12,
+                        height: 12,
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            color: blue,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: light, width: 2))))
+              ],
+            ),
+            Container(
+              width: 1,
+              height: 22,
+              color: lightgrey,
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(2),
+                margin: const EdgeInsets.all(2),
+                child: CircleAvatar(
+                  backgroundColor: light,
+                  child: Icon(
+                    Icons.person_outline,
+                    color: dark,
+                  ),
+                ),
+              ),
             )
           ],
         ),
+        iconTheme: IconThemeData(
+          color: dark,
+        ),
+        backgroundColor: light,
+        // iconTheme: IconThemeData(
+        //   color: Colors.white,
+        // ),
+        // title: Text(
+        //   'Gobike dashboard'.toUpperCase(),
+        //   style: TextStyle(
+        //     color: Colors.white,
+        //     fontWeight: FontWeight.w900,
+        //     fontSize: 19,
+        //   ),
+        // ),
       ),
+      sideBar: _sideBar.SideBarMenus(context, OB.tag),
       body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -244,7 +280,7 @@ class _OBState extends State<OB> {
                     maxHeight: 700,
                   ),
                   child: Card(
-                    elevation: 1,
+                    elevation: 3,
                     shadowColor: Colors.black,
                     clipBehavior: Clip.none,
                     child: ResponsiveDatatable(
@@ -291,12 +327,6 @@ class _OBState extends State<OB> {
                       selecteds: _selecteds,
                       showSelect: _showSelect,
                       autoHeight: false,
-                      dropContainer: (data) {
-                        if (int.tryParse(data['id'].toString())!.isEven) {
-                          return Text("is Even");
-                        }
-                        return _DropDownContainer(data: data);
-                      },
                       onChangedRow: (value, header) {
                         /// print(value);
                         /// print(header);
@@ -419,10 +449,6 @@ class _OBState extends State<OB> {
                   ),
                 ),
               ])),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _initializeData,
-        child: Icon(Icons.refresh_sharp),
-      ),
     );
   }
 }
@@ -445,7 +471,7 @@ class _DropDownContainer extends StatelessWidget {
     }).toList();
 
     return Container(
-      /// height: 100,
+      height: 200,
       child: Column(
         /// children: [
         ///   Expanded(
