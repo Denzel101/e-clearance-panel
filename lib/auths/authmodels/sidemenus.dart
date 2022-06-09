@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/students.dart';
 import 'package:schoolmanagement/ob.dart';
+import 'package:schoolmanagement/over.dart';
+import 'package:schoolmanagement/overhistory.dart';
 
 import '../stakeholders.dart';
 
@@ -38,14 +40,14 @@ class SideBarWidget {
           route: OB.id,
           icon: Icons.book_outlined,
         ),
-        AdminMenuItem(
+        const AdminMenuItem(
           title: 'Handing/Taking over',
-          route: StakeHolders.tag,
+          route: Over.id,
           icon: Icons.handshake_outlined,
         ),
-        AdminMenuItem(
+        const AdminMenuItem(
           title: 'Handing/Taking over history',
-          route: StakeHolders.tag,
+          route: OverHistory.id,
           icon: Icons.book_online,
         ),
       ],
@@ -60,7 +62,7 @@ class SideBarWidget {
         color: Colors.black26,
         child: Center(
           child: Text(
-            'footer',
+            '@GuardSuites',
             style: TextStyle(
               color: Colors.white,
             ),
