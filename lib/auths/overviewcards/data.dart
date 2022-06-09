@@ -1,9 +1,10 @@
 final List<String> threatLevelItems = ['High', 'Medium', 'Low'];
 final List<String> escalateToItems = [
   'Head of Operations',
-  'Head of Customer Relations',
+  'Head of Cusomer Relations',
 ];
-final List<String> sitesListItems = ['Delta Plains',
+final List<String> sitesListItems = [
+  'Delta Plains',
   'Nextgen Mall',
   'Greenpark',
   'Carrefour',
@@ -19,12 +20,16 @@ final List<String> sitesListItems = ['Delta Plains',
   'Sokowatch Kilifi',
   'Sokowatch Kikuyu',
   'Sokowatch Meru',
-  'Kyosk Eldoret'];
+  'Kyosk Eldoret'
+];
 
-final List<String> departmentListItems = ['SECURITY',
+final List<String> departmentListItems = [
+  'SECURITY',
   'MANPOWER',
   'FACILITY',
-  'CONTROL ROOM',];
+  'CONTROL ROOM',
+];
+
 
 final List<String> incidentListItems = [
   'Crime',
@@ -39,5 +44,11 @@ final List<String> incidentListItems = [
   'Complaints',
   'Lost and Found',
   'Patrol',
-  'Visit from Superior'
+  'Visit from Superior',
+  'Other',
+];
+
+final List<String> overListItems = [
+  'Handover',
+  'Takeover',
 ];

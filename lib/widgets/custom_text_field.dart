@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final FormFieldValidator mValidation;
   final int maxLines;
   final VoidCallback onTap;
+  final bool readOnly;
   final mOnSaved;
 
   const CustomTextField({
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
     required this.mValidation,
     required this.maxLines,
     required this.onTap,
+    this.readOnly = false,
     this.mOnSaved,
     required this.textEditingController,
   }) : super(key: key);
@@ -36,6 +38,7 @@ class CustomTextField extends StatelessWidget {
         color: Colors.grey,
       ),
       maxLines: maxLines,
+      readOnly: readOnly,
       textCapitalization: textCapitalization,
       focusNode: mFocusNode,
       controller: textEditingController,

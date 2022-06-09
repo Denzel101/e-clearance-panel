@@ -6,12 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/profilesections.dart';
 import 'package:schoolmanagement/auths/stakeholders.dart';
-import 'package:schoolmanagement/auths/students.dart';
 import 'package:schoolmanagement/firebase_options.dart';
 import 'package:schoolmanagement/locator.dart';
+import 'package:schoolmanagement/ob.dart';
 import 'package:schoolmanagement/provider/notification_state.dart';
 
 import 'auths/login.dart';
+import 'over.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
             HomePage.id: (_) => const HomePage(),
             StakeHolders.tag: (_) => const StakeHolders(),
             ProfileSection.routeName: (_) => const ProfileSection(),
-            Students.id: (_) => const Students(),
+            OB.id: (_) => const OB(),
+            OverScreen.id: (_) => const OverScreen()
           },
         ),
       ),
