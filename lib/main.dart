@@ -9,6 +9,7 @@ import 'package:schoolmanagement/auths/stakeholders.dart';
 import 'package:schoolmanagement/firebase_options.dart';
 import 'package:schoolmanagement/locator.dart';
 import 'package:schoolmanagement/ob.dart';
+import 'package:schoolmanagement/overhistory.dart';
 import 'package:schoolmanagement/provider/notification_state.dart';
 
 import 'auths/login.dart';
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
             StakeHolders.tag: (_) => const StakeHolders(),
             ProfileSection.routeName: (_) => const ProfileSection(),
             OB.id: (_) => const OB(),
-            OverScreen.id: (_) => const OverScreen()
+            OverScreen.id: (_) => const OverScreen(),
+            OverHistory.id: (_) => const OverHistory()
           },
         ),
       ),
