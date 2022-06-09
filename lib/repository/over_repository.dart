@@ -21,8 +21,6 @@ class OverRepository {
 
   //map detaiils to firestore
   Future<OverModel?> registerDetails({
-    required DateTime handOverAt,
-    DateTime? takeOverAt,
     required String overType,
     required String name,
     required String narrative,
@@ -43,8 +41,8 @@ class OverRepository {
         uid: uid,
         narrative: narrative,
         acceptingName: acceptingName,
-        handedOverAt: handOverAt,
-        takeOverAt: takeOverAt,
+        handedOverAt: DateTime.now(),
+        takeOverAt: DateTime.now(),
         comment: comment,
         isPending: isPending,
       );
@@ -84,14 +82,13 @@ class OverRepository {
     required String acceptingName,
     required String comment,
     bool? isPending,
-    required DateTime takeOverAt,
     required String overType,
   }) async {
     await _firestore.collection(overPath).doc(id).update({
       'acceptingName': acceptingName,
       'comment': comment,
       'isPending': isPending = false,
-      'takeOverAt': takeOverAt,
+      'takeOverAt': DateTime.now(),
       'overType': overType,
     });
   }

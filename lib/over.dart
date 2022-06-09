@@ -327,7 +327,6 @@ class _OverScreenState extends State<OverScreen> {
                                 await locator
                                     .get<OverRepository>()
                                     .registerDetails(
-                                      handOverAt: DateTime.now(),
                                       overType: selectedItem!,
                                       name: nameHandOverTextEditingController
                                           .text,
@@ -375,10 +374,6 @@ class _OverScreenState extends State<OverScreen> {
                                         ),
                                         value: occurenceDetails,
                                       ),
-                                    const DropdownMenuItem(
-                                      child: Text(''),
-                                      value: null,
-                                    ),
                                   ],
                                   onChanged: (OverModel? item) {
                                     if (item == null) {
@@ -518,8 +513,10 @@ class _OverScreenState extends State<OverScreen> {
                                                 .text,
                                         comment:
                                             commentTextEditingController.text,
-                                        takeOverAt: DateTime.now(),
-                                        overType: siteSelectedItem.toString(),
+                                        overType: siteSelectedItem?.overType ==
+                                                'Takeover'
+                                            ? 'Takeover'
+                                            : 'Takeover',
                                       );
                                 }
                                 _clearFormField();
