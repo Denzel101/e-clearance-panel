@@ -368,19 +368,17 @@ class _OverScreenState extends State<OverScreen> {
                                   value: siteSelectedItem,
                                   items: [
                                     for (final occurenceDetails in _overList)
-                                      DropdownMenuItem(
-                                        child: Text(
-                                          occurenceDetails.site,
+                                      if (occurenceDetails.isPending == true)
+                                        DropdownMenuItem(
+                                          child: Text(
+                                            occurenceDetails.site,
+                                          ),
+                                          value: occurenceDetails,
                                         ),
-                                        value: occurenceDetails,
-                                      ),
                                   ],
                                   onChanged: (OverModel? item) {
                                     if (item == null) {
                                       return;
-                                    }
-                                    for (final x in _overList) {
-                                      print(x.name);
                                     }
                                     setState(() {
                                       siteSelectedItem = item;

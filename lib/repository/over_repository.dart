@@ -77,7 +77,7 @@ class OverRepository {
   }
 
   //update data from firestore
-  Future<void> updateDetailsEntry({
+  Future<OverModel?> updateDetailsEntry({
     required String id,
     required String acceptingName,
     required String comment,
@@ -88,8 +88,9 @@ class OverRepository {
       'acceptingName': acceptingName,
       'comment': comment,
       'isPending': isPending = false,
-      'takeOverAt': DateTime.now(),
+      'takeOverAt': DateTime.now().millisecondsSinceEpoch,
       'overType': overType,
     });
+    return null;
   }
 }
