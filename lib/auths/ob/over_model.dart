@@ -4,7 +4,7 @@ class OverModel {
   final String id;
   final String uid;
   final DateTime handedOverAt;
-  final DateTime? takeOverAt;
+  final DateTime takeOverAt;
   final String overType;
   final String name;
   final String site;
@@ -21,7 +21,7 @@ class OverModel {
     required this.site,
     required this.narrative,
     this.acceptingName,
-    this.takeOverAt,
+    required this.takeOverAt,
     this.comment,
     this.isPending = true,
   });
@@ -30,7 +30,7 @@ class OverModel {
     return {
       'id': id,
       'handedOverAt': handedOverAt.millisecondsSinceEpoch,
-      'takeOverAt': takeOverAt?.millisecondsSinceEpoch,
+      'takeOverAt': takeOverAt.millisecondsSinceEpoch,
       'overType': overType,
       'uid': uid,
       'name': name,
@@ -46,9 +46,7 @@ class OverModel {
     return OverModel(
       id: map['id'] ?? '',
       handedOverAt: DateTime.fromMillisecondsSinceEpoch(map['handedOverAt']),
-      takeOverAt: map['takeOverAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['takeOverAt'])
-          : null,
+      takeOverAt: DateTime.fromMillisecondsSinceEpoch(map['takeOverAt']),
       overType: map['overType'] ?? '',
       uid: map['uid'] ?? '',
       name: map['name'] ?? '',
