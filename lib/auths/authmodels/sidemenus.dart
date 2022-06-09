@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
-import 'package:schoolmanagement/auths/students.dart';
 import 'package:schoolmanagement/ob.dart';
+import 'package:schoolmanagement/over.dart';
 
 import '../stakeholders.dart';
 
@@ -38,9 +38,9 @@ class SideBarWidget {
           route: OB.id,
           icon: Icons.book_outlined,
         ),
-        AdminMenuItem(
+        const AdminMenuItem(
           title: 'Handing/Taking over',
-          route: StakeHolders.tag,
+          route: OverScreen.id,
           icon: Icons.handshake_outlined,
         ),
         AdminMenuItem(
@@ -58,7 +58,7 @@ class SideBarWidget {
         height: 50,
         width: double.infinity,
         color: Colors.black26,
-        child: Center(
+        child: const Center(
           child: Text(
             'footer',
             style: TextStyle(

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/auths/profilesections.dart';
 import 'package:schoolmanagement/auths/stakeholders.dart';
-import 'package:schoolmanagement/auths/students.dart';
 import 'package:schoolmanagement/firebase_options.dart';
 import 'package:schoolmanagement/locator.dart';
 import 'package:schoolmanagement/ob.dart';
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
             StakeHolders.tag: (_) => const StakeHolders(),
             ProfileSection.routeName: (_) => const ProfileSection(),
             OB.id: (_) => const OB(),
-            Over.id: (_) => const Over()
+            OverScreen.id: (_) => const OverScreen()
           },
         ),
       ),
