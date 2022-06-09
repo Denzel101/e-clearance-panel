@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolmanagement/auths/homepage.dart';
 import 'package:schoolmanagement/ob.dart';
 import 'package:schoolmanagement/over.dart';
+import 'package:schoolmanagement/overhistory.dart';
 
 import '../stakeholders.dart';
 
@@ -43,9 +44,9 @@ class SideBarWidget {
           route: OverScreen.id,
           icon: Icons.handshake_outlined,
         ),
-        AdminMenuItem(
-          title: 'Handing/Taking over history',
-          route: StakeHolders.tag,
+        const AdminMenuItem(
+          title: 'Handing/Taking over logs',
+          route: OverHistory.id,
           icon: Icons.book_online,
         ),
       ],
