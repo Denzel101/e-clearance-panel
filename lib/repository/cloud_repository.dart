@@ -28,23 +28,26 @@ class CloudRepository {
       required String department,
       required String escalatedTo,
       required String site,
-      required String threatLevel}) async {
+      required String threatLevel,
+      String? other}) async {
     try {
       final uid = _firebaseAuth.currentUser!.uid;
       final id = _firestore.collection(incidentsPath).doc().id;
 
       final obModel = ObModel(
-          id: id,
-          uid: uid,
-          dateTime: dateTime,
-          site: site,
-          incidentType: incidentType,
-          reportBy: reportedBy,
-          incidentBrief: incidentBrief,
-          resolution: resolution,
-          department: department,
-          escalateTo: escalatedTo,
-          threatLevel: threatLevel);
+        id: id,
+        uid: uid,
+        dateTime: dateTime,
+        site: site,
+        incidentType: incidentType,
+        reportBy: reportedBy,
+        incidentBrief: incidentBrief,
+        resolution: resolution,
+        department: department,
+        escalateTo: escalatedTo,
+        threatLevel: threatLevel,
+        other: other,
+      );
 
       await _firestore.collection(incidentsPath).doc(id).set(obModel.toMap());
     } on auth.FirebaseAuthException catch (error) {

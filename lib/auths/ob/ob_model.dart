@@ -5,11 +5,13 @@ class ObModel {
   final String incidentType;
   final String reportBy;
   final String incidentBrief;
+  final String resolution;
   final String department;
   final String escalateTo;
   final String threatLevel;
   final String site;
-  final String resolution;
+  final String? comment;
+  final String? other;
 
   ObModel({
     required this.id,
@@ -18,11 +20,13 @@ class ObModel {
     required this.incidentType,
     required this.reportBy,
     required this.incidentBrief,
+    required this.resolution,
     required this.department,
     required this.escalateTo,
     required this.threatLevel,
     required this.site,
-    required this.resolution,
+    this.comment,
+    this.other,
   });
 
   Map<String, dynamic> toMap() {
@@ -33,11 +37,13 @@ class ObModel {
       'incidentType': incidentType,
       'reportBy': reportBy,
       'incidentBrief': incidentBrief,
+      'resolution': resolution,
       'department': department,
       'escalateTo': escalateTo,
       'threatLevel': threatLevel,
       'site': site,
-      'resolution': resolution,
+      'comment': comment,
+      'other': other,
     };
   }
 
@@ -54,6 +60,8 @@ class ObModel {
       escalateTo: map['escalateTo'] ?? '',
       threatLevel: map['threatLevel'] ?? '',
       site: map['site'] ?? '',
+      comment: map['comment'] ?? '',
+      other: map['other'] ?? '',
     );
   }
 }
