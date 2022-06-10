@@ -114,19 +114,19 @@ class _OverHistoryState extends State<OverHistory> {
           value: "site",
           show: true,
           sortable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Handing/Taking Over",
           value: "overType",
           show: true,
           sortable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Handed Over By",
           value: "name",
           show: true,
           sortable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Narrative",
           flex: 3,
@@ -134,20 +134,20 @@ class _OverHistoryState extends State<OverHistory> {
           show: true,
           sortable: false,
           editable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Taken Over By",
           value: "acceptingName",
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Comment",
           value: "comment",
           flex: 2,
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
     ];
     _initializeData();
   }

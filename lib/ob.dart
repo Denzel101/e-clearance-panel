@@ -47,7 +47,7 @@ class _OBState extends State<OB> {
     final _collectionRef = FirebaseFirestore.instance;
     await _collectionRef
         .collection("incidents")
-        .orderBy('handedOverAt', descending: true)
+        .orderBy('dateTime', descending: true)
         .get()
         .then((event) {
       for (var doc in event.docs) {
@@ -125,51 +125,52 @@ class _OBState extends State<OB> {
           value: "site",
           show: true,
           sortable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Department",
           value: "department",
           show: true,
           sortable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Escalated To",
           value: "escalateTo",
           show: true,
           sortable: false,
           editable: false,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Incident Type",
           value: "incidentType",
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Reported By",
           value: "reportBy",
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Threat Level",
           value: "threatLevel",
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Incident Brief",
           value: "incidentBrief",
           flex: 3,
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
       DatatableHeader(
           text: "Resolution",
           value: "resolution",
+          flex: 2,
           show: true,
           sortable: true,
-          textAlign: TextAlign.center),
+          textAlign: TextAlign.left),
     ];
     _initializeData();
   }
